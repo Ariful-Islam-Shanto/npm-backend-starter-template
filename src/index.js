@@ -1,14 +1,38 @@
 // Using dotenv by require syntax require('dotenv').config()
 //? Module syntax
-import dotenv from "dotenv"
+import dotenv from "dotenv";
+import path from "path"; // Import the path module
 //! When importing any file from another folder make sure to add the extention like .js
 import connectDb from "./db/connectDb.js";
+import { error } from "console";
+import { app } from "./app.js";
 dotenv.config({
-    path: "/.env"
+    path: "../.env"
 });
 
+
+
 //? External approach to connect to db
-connectDb();
+connectDb()
+.then(() => {
+    app.on("error", () => {
+        console.log("Error", error)
+
+        throw error;
+     })
+
+  //? If successfully the database if connected then listen to the port
+  app.listen(process.env.PORT || 8000, () => {
+    console.log(`Server is running on port ${process.env.PORT}`);
+  })
+
+  app.get('/', (req, res) => {
+    res.send('Server is running perfectly.')
+  })
+})
+.catch((error) => {
+    console.log("MongoDB connection failed", error);
+})
 
 
 
