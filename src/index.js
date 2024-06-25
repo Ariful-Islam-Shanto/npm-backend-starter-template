@@ -1,7 +1,20 @@
-import mongoose from "mongoose";
-import { DB_NAME } from "./constants";
+// Using dotenv by require syntax require('dotenv').config()
+//? Module syntax
+import dotenv from "dotenv"
+//! When importing any file from another folder make sure to add the extention like .js
+import connectDb from "./db/connectDb.js";
+dotenv.config({
+    path: "/.env"
+});
 
-// This a approach where the connection is been done within the index  file with IIFE (Immediately Invoked Function Expression)
+//? External approach to connect to db
+connectDb();
+
+
+
+
+
+/* This a approach where the connection is been done within the index  file with IIFE (Immediately Invoked Function Expression)
 
 import express from "express";
 const app = express();
@@ -28,3 +41,4 @@ const app = express();
     }
 }) ();
 
+*/
