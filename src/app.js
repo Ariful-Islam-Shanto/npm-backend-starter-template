@@ -18,4 +18,7 @@ app.use(express.urlencoded({extended: true}));
 //? For saving the static assets
 app.use(express.static("public"))
 
+//? To access the browser cookies by server
+app.use(cookieParser());
+
 export {app};
