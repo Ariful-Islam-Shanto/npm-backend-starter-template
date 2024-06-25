@@ -1,12 +1,8 @@
 import mongoose from "mongoose";
 import { DB_NAME } from "./constants";
 
+// This a approach where the connection is been done within the index  file with IIFE (Immediately Invoked Function Expression)
 
-
-
-
-
-/* This a approach where the connection is been done within the index.file with IIFE (Immediately Invoked Function Expression)
 import express from "express";
 const app = express();
 
@@ -31,4 +27,4 @@ const app = express();
         console.error("Error", error);
     }
 }) ();
-*/
+
